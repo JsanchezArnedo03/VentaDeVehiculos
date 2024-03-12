@@ -22,7 +22,7 @@ public class VehiculoCRUD {
     PreparedStatement ps;
     ResultSet rs;
 
-    public boolean vehiculo(Vehiculo vehiculo) {
+    public boolean crearvehiculo(Vehiculo vehiculo) {
         String sql = "";
         try {
             con.prepareCall(sql);
@@ -31,6 +31,24 @@ public class VehiculoCRUD {
         } catch (SQLException ex) {
             Logger.getLogger(VehiculoCRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return true;
+    }
+
+    public boolean vehiculoVendido(Vehiculo vehiculo) {
+        try {
+            String sql = "";
+            con.prepareCall(sql);
+            //Enviamos el estado del vehiculo si esta vendido o en stock
+            /*TRUE = VENDIDO
+            FALSE = STOCK
+             */
+            ps.setBoolean(1, true);
+
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(VehiculoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return true;
     }
 }
