@@ -31,9 +31,10 @@ public class VehiculoCRUD {
             ps = con.prepareCall(sql);
             ps.setString(1, vehiculo.getMarca());
             ps.setString(2, vehiculo.getModelo());
-            ps.setString(3, vehiculo.getDescripcion());
-            ps.setFloat(4, vehiculo.getPrecio());
-            ps.setBoolean(5, vehiculo.isEstado());
+            ps.setString(3, vehiculo.getPlaca());
+            ps.setString(4, vehiculo.getDescripcion());
+            ps.setFloat(5, vehiculo.getPrecio());
+            ps.setBoolean(6, vehiculo.isEstado());
             ps.executeUpdate();
             con.close();
             return true;

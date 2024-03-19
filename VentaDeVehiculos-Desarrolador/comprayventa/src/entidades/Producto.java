@@ -11,6 +11,7 @@ package entidades;
 public class Producto {
 
     private int idProducto;
+    private String placa;
     private String marca;
     private String modelo;
     private String descripcion;
@@ -64,5 +65,13 @@ public class Producto {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 }

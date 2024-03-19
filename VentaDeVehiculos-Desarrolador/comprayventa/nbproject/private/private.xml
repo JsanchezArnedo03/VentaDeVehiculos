@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/Persistencia/MarcasCRUD.java</file>
-            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/Validadaciones/NegocioMarcas.java</file>
+            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/Vistas/FrmInformes.java</file>
+            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/entidades/Factura.java</file>
+            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/entidades/IdeasDeinformes.java</file>
+            <file>file:/C:/Users/jssa3/Downloads/VentaDeVehiculos-Desarrolador/VentaDeVehiculos-Desarrolador/comprayventa/src/Persistencia/InformesCRUD.java</file>
         </group>
     </open-files>
 </project-private>
