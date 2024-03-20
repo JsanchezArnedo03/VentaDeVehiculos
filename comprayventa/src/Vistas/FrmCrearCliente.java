@@ -1,26 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import Validadaciones.NegocioCliente;
 import entidades.Cliente;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jssa3
- */
 public class FrmCrearCliente extends javax.swing.JFrame {
-
+    
     Cliente cliente = new Cliente();
+    
     NegocioCliente nCliente = new NegocioCliente();
-
+    
     public FrmCrearCliente() {
         initComponents();
+        cargarComboTipoDocumento(JcTipoDocumento);
     }
 
     /**
@@ -46,6 +39,8 @@ public class FrmCrearCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         JcTipoDocumento = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +65,8 @@ public class FrmCrearCliente extends javax.swing.JFrame {
 
         JcTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de documento" }));
 
+        jLabel7.setText("TELEFONO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,7 +88,7 @@ public class FrmCrearCliente extends javax.swing.JFrame {
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JcTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(142, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -109,9 +106,16 @@ public class FrmCrearCliente extends javax.swing.JFrame {
                         .addComponent(txtPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTelefono))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel7)
+                        .addGap(0, 23, Short.MAX_VALUE)))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,13 +125,15 @@ public class FrmCrearCliente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,20 +162,23 @@ public class FrmCrearCliente extends javax.swing.JFrame {
         if (txtDocumento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "El documento de identidad es requerido");
         }
-        if (JcTipoDocumento.getSelectedIndex() == 0) {
+        /*if (JcTipoDocumento.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un tipo de documento valido");
-        }
+        }*/
         cliente.setDocumento(txtDocumento.getText());
         cliente.setPrimerNombre(txtPrimerNombre.getText().toUpperCase());
         cliente.setSegundoNombre(txtSegundoNombre.getText().toUpperCase());
         cliente.setPrimerApellido(txtPrimerApellido.getText().toUpperCase());
         cliente.setSegundoApellido(txtSegundoApellido.getText().toUpperCase());
+        cliente.setTelefono(txtTelefono.getText());
+        cliente.setEmail(txtEmail.getText());
         nCliente.crearCliente(cliente);
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    /*void cargarCombo(JComboBox e) {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-    }*/
+    
+    final void cargarComboTipoDocumento(JComboBox e) {
+        nCliente.cargarComboMarcas(e);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -195,10 +204,8 @@ public class FrmCrearCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmCrearCliente().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrmCrearCliente().setVisible(true);
         });
     }
 
@@ -211,11 +218,13 @@ public class FrmCrearCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtPrimerApellido;
     private javax.swing.JTextField txtPrimerNombre;
     private javax.swing.JTextField txtSegundoApellido;
     private javax.swing.JTextField txtSegundoNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,7 @@ public class Marcas {
 
     private int idMarcas;
     private String nombre;
-
+private String modelo;
     public int getIdMarcas() {
         return idMarcas;
     }
@@ -21,6 +21,14 @@ public class Marcas {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
 }

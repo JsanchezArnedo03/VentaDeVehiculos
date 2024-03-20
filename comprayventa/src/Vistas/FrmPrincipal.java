@@ -65,9 +65,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(btnCrearVehiculo)
-                .addGap(37, 37, 37)
+                .addGap(45, 45, 45)
                 .addComponent(btnVenderVehiculo)
-                .addGap(49, 49, 49)
+                .addGap(41, 41, 41)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
@@ -116,10 +116,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmPrincipal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrmPrincipal().setVisible(true);
         });
     }
 
