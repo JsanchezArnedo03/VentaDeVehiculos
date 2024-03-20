@@ -6,6 +6,9 @@ package Validadaciones;
 
 import Persistencia.ClienteCRUD;
 import entidades.Cliente;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -17,5 +20,19 @@ public class NegocioCliente {
 
     public boolean crearCliente(Cliente cliente) {
         return clienteCRUD.crearCliente(cliente);
+    }
+
+    public Cliente validarExistencia(String documento) {
+        return clienteCRUD.buscarCliente(documento);
+    }
+
+    public DefaultComboBoxModel cargarComboMarcas(JComboBox c) {
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        c.setModel(combo);
+        ArrayList<String> listadoDocumento = clienteCRUD.CargarTipoDocumento();
+        for (int i = 0; i < listadoDocumento.size(); i++) {
+            combo.addElement(listadoDocumento.get(i));
+        }
+        return combo;
     }
 }

@@ -11,10 +11,14 @@ package entidades;
 public class Producto {
 
     private int idProducto;
+    private String placa;
     private String marca;
-    private int modelo;
+    private String modelo;
+    private String descripcion;
+    private float precio;
     private boolean estado;
-
+    
+    
     public int getIdProducto() {
         return idProducto;
     }
@@ -31,11 +35,11 @@ public class Producto {
         this.marca = marca;
     }
 
-    public int getModelo() {
+    public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(int modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
@@ -45,5 +49,29 @@ public class Producto {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 }

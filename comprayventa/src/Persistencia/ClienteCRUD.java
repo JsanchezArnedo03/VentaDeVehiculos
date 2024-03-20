@@ -6,40 +6,46 @@ package Persistencia;
 
 import BaseDatos.Conexion;
 import entidades.Cliente;
+import entidades.TipoDocumento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author jssa3
- */
 public class ClienteCRUD {
 
-    private Connection con = null;
+    private final Connection con = Conexion.getConnection();
     private PreparedStatement ps = null;
+    private ResultSet rs = null;
 
     public boolean crearCliente(Cliente cliente) {
-        con = Conexion.getConnection();
 
-        String sql = "";
+        String sql = "insert into cliente(documentoIdentidad ,\n"
+                + "    primerNombre,\n"
+                + "    segundoNombre,\n"
+                + "    primerApellido ,\n"
+                + "    segundoApellido ,\n"
+                + "    telefono ,\n"
+                + "    email)values(?,?,?,?,?,?,?);";
         try {
             ps = con.prepareCall(sql);
-            //TODA PERSISTENCIA DE DATOS VA AQUI PARA CREAR UN NUEVO CLIENTE
             ps.setString(1, cliente.getDocumento());
             ps.setString(2, cliente.getPrimerNombre());
             ps.setString(3, cliente.getSegundoNombre());
-            ps.setString(4, cliente.getSegundoApellido());
-            ps.setString(5, cliente.getTelefono());
-            ps.setString(6, cliente.getEmail());
+            ps.setString(4, cliente.getPrimerApellido());
+            ps.setString(5, cliente.getSegundoApellido());
+            ps.setString(6, cliente.getTelefono());
+            ps.setString(7, cliente.getEmail());
             ps.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return false;
     }
 
     public boolean actualizarInfo(Cliente cliente) {
@@ -52,5 +58,43 @@ public class ClienteCRUD {
         } catch (SQLException e) {
         }
         return true;
+    }
+
+    public Cliente buscarCliente(String documento) {
+        Cliente cliente = new Cliente();
+        try {
+
+            String sql = "SELECT * from cliente;";
+            ps = con.prepareCall(sql);
+            ps.setString(1, cliente.getDocumento());
+            rs = ps.executeQuery();
+            if (rs != null) {
+                cliente.setIdCliente(rs.getInt(1));
+            }
+            return cliente;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cliente;
+    }
+
+    public ArrayList CargarTipoDocumento() {
+
+        ArrayList<String> listadoDocumentos = null;
+        String sql = "SELECT NOMBRE FROM Tipodocumento;";
+        try {
+            ps = con.prepareCall(sql);
+            ResultSet rs;
+            listadoDocumentos = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                TipoDocumento tDocumento = new TipoDocumento();
+                tDocumento.setNombre(rs.getString(1));
+                listadoDocumentos.add(tDocumento.getNombre());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listadoDocumentos;
     }
 }
